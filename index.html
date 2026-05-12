@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="
+width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no,
+viewport-fit=cover
+">
+<meta name="theme-color" content="#05070d">
+<meta name="color-scheme" content="dark">
+
+<title>
+Rekap Utang
+</title>
+
+<style>
+	
+	/* =========================
+LOCK SCREEN
+========================= */
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    touch-action:none;
+
+    overscroll-behavior:none;
+
+}
+
+/* =========================
+ANTI DESKTOP RESIZE
+========================= */
+
+body{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+}
+
+/* FIXED MOBILE SIZE */
+
+#container{
+
+    width:100%;
+
+    max-width:350px;
+
+    min-width:350px;
+
+    height:100vh;
+
+    margin:auto;
+
+    padding-top:20px;
+    padding-bottom:25px;
+
+    box-sizing:border-box;
+
+    overflow-y:auto;
+
+}
+
+/* =========================
+ANTI TEXT SELECT
+========================= */
+
+*{
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    -webkit-touch-callout:none;
+
+}
+/* =========================
+FORCE DARK BACKGROUND
+========================= */
+
+:root{
+
+    color-scheme:dark;
+
+}
+
+html{
+
+    background:#05070d !important;
+
+    min-height:100%;
+
+}
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+body{
+
+    overflow:hidden;
+
+}
+
+/* ANDROID AUTO WHITE FIX */
+
+html,
+body{
+
+    overscroll-behavior-y:none;
+
+}
+
+/* SELECT FIX */
+
+select,
+input{
+
+    appearance:none;
+    -webkit-appearance:none;
+
+}
+
+/* =========================
+BODY
+========================= */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+}
+
+/* =========================
+CONTAINER
+========================= */
+
+#container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-top:20px;
+    padding-bottom:25px;
+
+    max-width:none;
+
+    min-height:100vh;
+
+}
+
+/* =========================
+GLOBAL BOX
+========================= */
+
+.box{
+
+    margin-top:25px;
+
+    background:#222;
+
+    border:4px solid #0047c6;
+
+    border-radius:25px;
+
+    padding:20px;
+
+    box-sizing:border-box;
+
+}
+
+/* =========================
+HEADER
+========================= */
+
+#header{
+
+    padding:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    height:auto;
+
+}
+
+#header img{
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:3px solid white;
+
+    flex-shrink:0;
+
+    object-fit:cover;
+
+}
+
+#headerText{
+
+    margin-left:0;
+
+}
+
+#headerText h1{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+    -webkit-text-stroke:0;
+
+}
+
+#headerText p{
+
+    margin:0;
+
+    margin-top:3px;
+
+    font-size:15px;
+
+    color:#008cff;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+LIST BOX
+========================= */
+
+#utangBox{
+
+    min-height:220px;
+
+}
+
+#tableHeader{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+    padding:0;
+
+}
+
+#utangList{
+
+    margin-top:0;
+
+}
+
+.listItem{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.15);
+
+    font-size:15px;
+
+    background:none;
+
+    border-radius:0;
+
+    margin-bottom:0;
+
+    color:white;
+
+    font-weight:normal;
+
+}
+
+.nama{
+
+    width:auto;
+
+}
+
+.utang{
+
+    color:white;
+
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.mainButton{
+
+    width:100%;
+
+    margin-top:20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    background:#708a9c;
+
+    color:white;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    padding:14px;
+
+    border-radius:22px;
+
+    border:4px solid #0047c6;
+
+    cursor:pointer;
+
+    box-sizing:border-box;
+
+    height:auto;
+
+    -webkit-text-stroke:0;
+
+}
+
+#paymentMethodButton{
+
+    margin-top:25px;
+
+    font-size:18px;
+
+}
+
+#tagihButton{
+
+    margin-top:20px;
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+#footer{
+
+    margin-top:35px;
+
+    background:#1248ad;
+
+    padding:14px;
+
+    border-radius:20px 20px 0 0;
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#4fc3ff;
+
+    border:none;
+
+    width:100%;
+
+    box-sizing:border-box;
+
+}
+
+/* =========================
+MODAL
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.75);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+/* =========================
+MODAL BOX
+========================= */
+
+.modalContent{
+
+    width:75%;
+
+    background:#222;
+
+    border:6px solid #0047c6;
+
+    border-radius:35px;
+
+    padding:30px;
+
+    box-sizing:border-box;
+
+}
+
+/* =========================
+MODAL TITLE
+========================= */
+
+.modalTitle{
+
+    margin-top:0;
+
+    text-align:center;
+
+    font-size:34px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+    -webkit-text-stroke:0;
+
+    margin-bottom:20px;
+
+}
+
+/* =========================
+MODAL LABEL
+========================= */
+
+.modalLabel{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#008cff;
+
+    text-align:left;
+
+}
+
+/* =========================
+INPUT
+========================= */
+
+.modalInput,
+.modalSelect{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    border:none;
+
+    outline:none;
+
+    padding:16px;
+
+    border-radius:20px;
+
+    font-size:18px;
+
+    background:#ddd;
+
+    color:#222;
+
+    margin-bottom:20px;
+
+    height:auto;
+
+    text-align:left;
+
+}
+
+/* =========================
+MODAL BUTTON
+========================= */
+
+.modalButtons{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.btn{
+
+    width:42%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:20px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+    height:auto;
+
+    -webkit-text-stroke:0;
+
+}
+
+.cancel{
+
+    background:#cb1f1f;
+
+}
+
+.save{
+
+    background:#38b655;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="container">
+
+    <!-- HEADER -->
+
+    <div id="header"
+    class="box">
+
+        <img src="rekap.png">
+
+        <div id="headerText">
+
+            <h1>
+            REKAP UTANG
+            </h1>
+
+            <p>
+            Bayar utang ege...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- PAYMENT METHOD -->
+
+    <div
+    id="paymentMethodButton"
+    class="mainButton">
+
+    PAYMENT METHOD
+
+    </div>
+
+    <!-- LIST -->
+
+    <div id="utangBox"
+    class="box">
+
+        <div id="tableHeader">
+
+            <div>
+            Nama
+            </div>
+
+            <div>
+            Utang
+            </div>
+
+        </div>
+
+        <div id="utangList">
+        </div>
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <div id="addButton"
+    class="mainButton">
+
+        + LIST PENGHOETANG
+
+    </div>
+
+    <div id="tagihButton"
+    class="mainButton">
+
+        TAGIH BROKK?
+
+    </div>
+
+    <!-- FOOTER -->
+
+    <div id="footer">
+
+        by Comérsio K
+
+    </div>
+
+</div>
+
+<!-- MODAL ADD -->
+
+<div id="addModal"
+class="modal">
+
+    <div class="modalContent">
+
+        <div class="modalLabel">
+        Nama
+        </div>
+
+        <input
+        type="text"
+        id="namaInput"
+        class="modalInput">
+
+        <div class="modalLabel">
+        Utang
+        </div>
+
+        <input
+        type="number"
+        id="utangInput"
+        class="modalInput">
+
+        <div class="modalButtons">
+
+            <button
+            class="btn cancel"
+            id="cancelAdd">
+
+            Cancel
+
+            </button>
+
+            <button
+            class="btn save"
+            id="saveAdd">
+
+            Save
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- MODAL TAGIH -->
+
+<div id="tagihModal"
+class="modal">
+
+    <div class="modalContent">
+
+        <div class="modalTitle">
+
+        TAGIH BROKK?
+
+        </div>
+
+        <div class="modalLabel">
+
+        Masukkan metode pembayaran lu brokk..
+
+        </div>
+
+        <select
+        id="paymentSelect"
+        class="modalSelect">
+        </select>
+
+        <div class="modalButtons">
+
+            <button
+            class="btn cancel"
+            id="cancelTagih">
+
+            TAR AHH
+
+            </button>
+
+            <button
+            class="btn save"
+            id="goTagih">
+
+            TAGIH!!
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+ELEMENT
+========================= */
+
+const addButton =
+document.getElementById(
+"addButton"
+);
+
+const tagihButton =
+document.getElementById(
+"tagihButton"
+);
+
+const paymentMethodButton =
+document.getElementById(
+"paymentMethodButton"
+);
+
+const addModal =
+document.getElementById(
+"addModal"
+);
+
+const tagihModal =
+document.getElementById(
+"tagihModal"
+);
+
+const utangList =
+document.getElementById(
+"utangList"
+);
+
+/* =========================
+DATA
+========================= */
+
+let dataUtang =
+JSON.parse(
+localStorage.getItem(
+"utangData"
+)
+) || [];
+
+/* =========================
+RENDER
+========================= */
+
+function renderUtang(){
+
+    utangList.innerHTML = "";
+
+    dataUtang.forEach((item)=>{
+
+        utangList.innerHTML += `
+
+        <div class="listItem">
+
+            <div class="nama">
+            ${item.nama}
+            </div>
+
+            <div class="utang">
+            Rp ${Number(item.utang)
+            .toLocaleString("id-ID")}
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+/* =========================
+OPEN MODAL
+========================= */
+
+addButton.onclick = ()=>{
+
+    addModal.style.display =
+    "flex";
+
+};
+
+tagihButton.onclick = ()=>{
+
+    tagihModal.style.display =
+    "flex";
+
+    loadPayments();
+
+};
+
+/* =========================
+PAYMENT METHOD PAGE
+========================= */
+
+paymentMethodButton.onclick = ()=>{
+
+    window.location.href =
+    "paymentmethod.html";
+
+};
+
+/* =========================
+CANCEL
+========================= */
+
+document
+.getElementById(
+"cancelAdd"
+)
+.onclick = ()=>{
+
+    addModal.style.display =
+    "none";
+
+};
+
+document
+.getElementById(
+"cancelTagih"
+)
+.onclick = ()=>{
+
+    tagihModal.style.display =
+    "none";
+
+};
+
+/* =========================
+SAVE DATA
+========================= */
+
+document
+.getElementById(
+"saveAdd"
+)
+.onclick = ()=>{
+
+    const nama =
+    document.getElementById(
+    "namaInput"
+    ).value;
+
+    const utang =
+    document.getElementById(
+    "utangInput"
+    ).value;
+
+    if(!nama || !utang){
+
+        return;
+
+    }
+
+    dataUtang.push({
+
+        nama:nama,
+        utang:utang
+
+    });
+
+    localStorage.setItem(
+
+        "utangData",
+
+        JSON.stringify(
+        dataUtang
+        )
+
+    );
+
+    renderUtang();
+
+    addModal.style.display =
+    "none";
+
+    document.getElementById(
+    "namaInput"
+    ).value = "";
+
+    document.getElementById(
+    "utangInput"
+    ).value = "";
+
+};
+
+/* =========================
+LOAD PAYMENT METHOD
+========================= */
+
+function loadPayments(){
+
+    const select =
+    document.getElementById(
+    "paymentSelect"
+    );
+
+    select.innerHTML = "";
+
+    /* AMBIL DARI paymentmethod.html */
+
+    const methods =
+    JSON.parse(
+    localStorage.getItem(
+    "payments"
+    )
+    ) || [];
+
+    if(methods.length === 0){
+
+        select.innerHTML = `
+        <option>
+        Belum ada metode pembayaran
+        </option>
+        `;
+
+        return;
+
+    }
+
+    methods.forEach((item)=>{
+
+        select.innerHTML += `
+
+        <option
+        value="${item.bank}">
+
+        ${item.bank}
+        - ${item.number}
+        - A/N ${item.name}
+
+        </option>
+
+        `;
+
+    });
+
+}
+
+/* =========================
+TAGIH
+========================= */
+
+document
+.getElementById(
+"goTagih"
+)
+.onclick = ()=>{
+
+    const method =
+    document.getElementById(
+    "paymentSelect"
+    ).value;
+
+    localStorage.setItem(
+
+        "selectedPaymentMethod",
+
+        method
+
+    );
+
+    window.location.href =
+    "payment.html";
+
+};
+
+/* =========================
+INIT
+========================= */
+
+renderUtang();
+
+</script>
+
+</body>
+</html>

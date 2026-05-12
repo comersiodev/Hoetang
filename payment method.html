@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Payment Method
+</title>
+
+<style>
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-top:25px;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    background:#222;
+
+    border:5px solid #0047c6;
+
+    border-radius:30px;
+
+    padding:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* ICON */
+
+.header-icon{
+
+    width:85px;
+    height:85px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:3px solid white;
+
+    flex-shrink:0;
+
+}
+
+.header-icon img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* TITLE */
+
+.title h1{
+
+    margin:0;
+
+    font-size:32px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+}
+
+.title p{
+
+    margin:0;
+
+    margin-top:5px;
+
+    font-size:20px;
+
+    color:#008cff;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   PAYMENT BOX
+========================= */
+
+.payment-box{
+
+    margin-top:30px;
+
+    background:#222;
+
+    border:5px solid #0047c6;
+
+    border-radius:30px;
+
+    min-height:220px;
+
+    padding:25px;
+
+}
+
+/* TITLE */
+
+.payment-title{
+
+    text-align:center;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    margin-bottom:25px;
+
+}
+
+/* PAYMENT CARD */
+
+.payment-card{
+
+    background:#151515;
+
+    border:4px solid #0047c6;
+
+    border-radius:25px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+}
+
+/* TEXT */
+
+.payment-card h2{
+
+    margin:0;
+
+    color:#4db4ff;
+
+    font-size:24px;
+
+}
+
+.payment-card p{
+
+    margin:10px 0 0;
+
+    font-size:18px;
+
+    color:#ddd;
+
+    word-break:break-word;
+
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.add-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+    border:none;
+
+    background:#708a9c;
+
+    color:white;
+
+    font-size:26px;
+
+    font-weight:bold;
+
+    padding:16px;
+
+    border-radius:25px;
+
+    border:5px solid #0047c6;
+
+    cursor:pointer;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:45px;
+
+    background:#1248ad;
+
+    padding:18px;
+
+    border-radius:25px 25px 0 0;
+
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#4fc3ff;
+
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.75);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+/* BOX */
+
+.modal-box{
+
+    width:75%;
+
+    background:#222;
+
+    border:6px solid #0047c6;
+
+    border-radius:35px;
+
+    padding:30px;
+
+}
+
+/* TITLE */
+
+.modal-box h2{
+
+    margin-top:0;
+
+    text-align:center;
+
+    font-size:34px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+}
+
+/* INPUT */
+
+.input-group{
+
+    margin-top:20px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#008cff;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    border:none;
+
+    outline:none;
+
+    padding:16px;
+
+    border-radius:20px;
+
+    font-size:18px;
+
+    background:#ddd;
+
+    color:#222;
+
+}
+
+/* =========================
+   MODAL BUTTON
+========================= */
+
+.modal-btns{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.modal-btns button{
+
+    width:42%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:20px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.cancel{
+
+    background:#cb1f1f;
+
+}
+
+.save{
+
+    background:#38b655;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <div class="header">
+
+        <div class="header-icon">
+
+            <img src="Rekap.png">
+
+        </div>
+
+        <div class="title">
+
+            <h1>
+            REKAP UTANG
+            </h1>
+
+            <p>
+            Bayar utang ege...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         PAYMENT BOX
+    ========================= -->
+
+    <div class="payment-box">
+
+        <div class="payment-title">
+
+            Payment Method :
+
+        </div>
+
+        <!-- LIST -->
+
+        <div id="paymentList">
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         BUTTON
+    ========================= -->
+
+    <button
+    class="add-btn"
+    id="openModal">
+
+    TAMBAHKAN PAYMENT METHOD
+
+    </button>
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <div class="footer">
+
+        by Comérsio K
+
+    </div>
+
+</div>
+
+<!-- =========================
+     MODAL
+========================= -->
+
+<div
+class="modal"
+id="modal">
+
+    <div class="modal-box">
+
+        <h2>
+        TAMBAHKAN PAYMENT METHOD
+        </h2>
+
+        <!-- NOMOR -->
+
+        <div class="input-group">
+
+            <label>
+            Nomor Rekening / eWallet
+            </label>
+
+            <input
+            type="text"
+            id="numberInput"
+            placeholder="Masukkan no rekening/eWallet...">
+
+        </div>
+
+        <!-- NAMA -->
+
+        <div class="input-group">
+
+            <label>
+            Nama Penerima
+            </label>
+
+            <input
+            type="text"
+            id="nameInput"
+            placeholder="Masukkan nama penerima...">
+
+        </div>
+
+        <!-- BANK -->
+
+        <div class="input-group">
+
+            <label>
+            Nama Bank / eWallet
+            </label>
+
+            <input
+            type="text"
+            id="bankInput"
+            placeholder="Masukkan nama bank/eWallet...">
+
+        </div>
+
+        <!-- BUTTON -->
+
+        <div class="modal-btns">
+
+            <button
+            class="cancel"
+            id="closeModal">
+
+            Cancel
+
+            </button>
+
+            <button
+            class="save"
+            id="saveData">
+
+            Save
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   ELEMENT
+========================= */
+
+const modal =
+document.getElementById("modal");
+
+const openModal =
+document.getElementById("openModal");
+
+const closeModal =
+document.getElementById("closeModal");
+
+const saveData =
+document.getElementById("saveData");
+
+const paymentList =
+document.getElementById("paymentList");
+
+/* =========================
+   LOAD STORAGE
+========================= */
+
+let payments =
+JSON.parse(
+localStorage.getItem("payments")
+) || [];
+
+/* =========================
+   RENDER
+========================= */
+
+function renderPayments(){
+
+    paymentList.innerHTML = "";
+
+    payments.forEach((data)=>{
+
+        const card =
+        document.createElement("div");
+
+        card.classList.add("payment-card");
+
+        card.innerHTML = `
+
+            <h2>
+            ${data.bank}
+            </h2>
+
+            <p>
+            ${data.number}
+            </p>
+
+            <p>
+            A/N ${data.name}
+            </p>
+
+        `;
+
+        paymentList.appendChild(card);
+
+    });
+
+}
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+openModal.onclick = ()=>{
+
+    modal.style.display = "flex";
+
+};
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+closeModal.onclick = ()=>{
+
+    modal.style.display = "none";
+
+};
+
+/* =========================
+   SAVE
+========================= */
+
+saveData.onclick = ()=>{
+
+    const number =
+    document.getElementById("numberInput").value;
+
+    const name =
+    document.getElementById("nameInput").value;
+
+    const bank =
+    document.getElementById("bankInput").value;
+
+    if(
+        number === "" ||
+        name === "" ||
+        bank === ""
+    ){
+
+        alert(
+        "Isi semua dulu coo 🗿"
+        );
+
+        return;
+
+    }
+
+    /* PUSH DATA */
+
+    payments.push({
+
+        number:number,
+        name:name,
+        bank:bank
+
+    });
+
+    /* SAVE STORAGE */
+
+    localStorage.setItem(
+
+        "payments",
+
+        JSON.stringify(payments)
+
+    );
+
+    /* RENDER */
+
+    renderPayments();
+
+    /* RESET */
+
+    document.getElementById(
+    "numberInput").value = "";
+
+    document.getElementById(
+    "nameInput").value = "";
+
+    document.getElementById(
+    "bankInput").value = "";
+
+    /* CLOSE */
+
+    modal.style.display = "none";
+
+};
+
+/* =========================
+   FIRST RENDER
+========================= */
+
+renderPayments();
+
+</script>
+
+</body>
+
+</html>

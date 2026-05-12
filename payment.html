@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="
+width=device-width,
+initial-scale=1.0,
+maximum-scale=1.0,
+minimum-scale=1.0,
+user-scalable=no,
+viewport-fit=cover
+">
+	<meta name="theme-color" content="#05070d">
+<meta name="color-scheme" content="dark">
+
+<title>
+Payment Bill
+</title>
+
+<!-- HTML2CANVAS -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+<style>
+	/* =========================
+LOCK SCREEN
+========================= */
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    touch-action:none;
+
+    overscroll-behavior:none;
+
+}
+
+/* =========================
+ANTI DESKTOP RESIZE
+========================= */
+
+body{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+}
+
+/* FIXED MOBILE SIZE */
+
+#container{
+
+    width:100%;
+
+    max-width:430px;
+
+    min-width:430px;
+
+    height:100vh;
+
+    margin:auto;
+
+    padding-top:20px;
+    padding-bottom:25px;
+
+    box-sizing:border-box;
+
+    overflow-y:auto;
+
+}
+
+/* =========================
+ANTI TEXT SELECT
+========================= */
+
+*{
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    -webkit-touch-callout:none;
+
+}
+
+/* =========================
+FORCE DARK BACKGROUND
+========================= */
+
+:root{
+
+    color-scheme:dark;
+
+}
+
+html{
+
+    background:#05070d !important;
+
+    min-height:100%;
+
+}
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+}
+
+/* ANDROID AUTO WHITE FIX */
+
+html,
+body{
+
+    overscroll-behavior-y:none;
+
+}
+
+/* SELECT FIX */
+
+select,
+input{
+
+    appearance:none;
+    -webkit-appearance:none;
+
+}
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+}
+body{
+
+    overflow:hidden;
+
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-top:20px;
+    padding-bottom:25px;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    background:#222;
+
+    border:4px solid #0047c6;
+
+    border-radius:25px;
+
+    padding:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+/* ICON */
+
+.header-icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:3px solid white;
+
+    flex-shrink:0;
+
+}
+
+.header-icon img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.title h1{
+
+    margin:0;
+
+    font-size:24px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+}
+
+.title p{
+
+    margin:0;
+
+    margin-top:3px;
+
+    font-size:15px;
+
+    color:#008cff;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   BILL AREA
+========================= */
+
+#billArea{
+
+    width:100%;
+
+}
+
+/* =========================
+   BOX
+========================= */
+
+.box{
+
+    margin-top:25px;
+
+    background:#222;
+
+    border:4px solid #0047c6;
+
+    border-radius:25px;
+
+    padding:20px;
+
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    margin-bottom:15px;
+
+}
+
+.item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.15);
+
+    font-size:15px;
+
+}
+
+/* =========================
+   TOTAL
+========================= */
+
+.total{
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.payment-title{
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+}
+
+.payment-number{
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    line-height:1.5;
+
+    word-break:break-word;
+
+}
+
+/* =========================
+   BUTTON SAVE
+========================= */
+
+.save-btn{
+
+    width:65%;
+
+    margin:20px auto 0;
+
+    display:block;
+
+    border:none;
+
+    background:#52b94f;
+
+    color:white;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    padding:12px;
+
+    border-radius:999px;
+
+    border:4px solid #0047c6;
+
+    cursor:pointer;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:35px;
+
+    background:#1248ad;
+
+    padding:14px;
+
+    border-radius:20px 20px 0 0;
+
+    text-align:center;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:#4fc3ff;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- =========================
+         BILL AREA
+    ========================= -->
+
+    <div id="billArea">
+
+        <!-- HEADER -->
+
+        <div class="header">
+
+            <div class="header-icon">
+
+                <img src="Rekap.png">
+
+            </div>
+
+            <div class="title">
+
+                <h1>
+                BILLING
+                </h1>
+
+                <p>
+                Bayar utang ege...
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             LIST UTANG
+        ========================= -->
+
+        <div class="box">
+
+            <div class="table-head">
+
+                <span>
+                Nama
+                </span>
+
+                <span>
+                Utang
+                </span>
+
+            </div>
+
+            <!-- LIST -->
+
+            <div id="debtList">
+
+            </div>
+
+            <!-- TOTAL -->
+
+            <div class="total"
+            id="totalUtang">
+
+            Total : Rp 0
+
+            </div>
+
+        </div>
+
+        <!-- =========================
+             PAYMENT METHOD
+        ========================= -->
+
+        <div class="box">
+
+            <div class="payment-title">
+
+                Nomor Rekening:
+
+            </div>
+
+            <div class="payment-number"
+            id="paymentInfo">
+
+            Tidak ada payment method
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- =========================
+         SAVE BUTTON
+    ========================= -->
+
+    <button
+    class="save-btn"
+    id="saveBill">
+
+    Simpan Bill sebagai Gambar
+
+    </button>
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <div class="footer">
+
+        by Comérsio K
+
+    </div>
+
+</div>
+
+<script>
+	
+	/* =========================
+LOCK ROTATION
+========================= */
+
+if(screen.orientation){
+
+    screen.orientation.lock(
+    "portrait"
+    ).catch(()=>{});
+
+}
+
+/* =========================
+ANTI CTRL ZOOM
+========================= */
+
+document.addEventListener(
+"wheel",
+function(e){
+
+    if(e.ctrlKey){
+
+        e.preventDefault();
+
+    }
+
+},
+{ passive:false }
+);
+
+/* =========================
+ANTI PINCH ZOOM
+========================= */
+
+document.addEventListener(
+"gesturestart",
+function(e){
+
+    e.preventDefault();
+
+}
+);
+
+document.addEventListener(
+"dblclick",
+function(e){
+
+    e.preventDefault();
+
+},
+{ passive:false }
+);
+
+/* =========================
+   LOAD DEBTS DARI INDEX
+========================= */
+
+const debtList =
+document.getElementById(
+"debtList"
+);
+
+const totalUtang =
+document.getElementById(
+"totalUtang"
+);
+
+/* AMBIL DATA YANG DISIMPAN INDEX */
+
+let debts =
+JSON.parse(
+localStorage.getItem(
+"utangData"
+)
+) || [];
+
+/* =========================
+   RENDER DEBTS
+========================= */
+
+let total = 0;
+
+/* RESET LIST */
+
+debtList.innerHTML = "";
+
+debts.forEach((data)=>{
+
+    const item =
+    document.createElement("div");
+
+    item.classList.add("item");
+
+    item.innerHTML = `
+
+        <span>
+        ${data.nama}
+        </span>
+
+        <span>
+        Rp ${Number(data.utang)
+        .toLocaleString("id-ID")}
+        </span>
+
+    `;
+
+    debtList.appendChild(item);
+
+    /* TOTAL */
+
+    total += Number(data.utang);
+
+});
+
+/* =========================
+   TOTAL FINAL
+========================= */
+
+totalUtang.innerHTML =
+
+`Total : Rp ${total
+.toLocaleString("id-ID")}`;
+
+/* =========================
+   PAYMENT METHOD
+========================= */
+
+const paymentInfo =
+document.getElementById("paymentInfo");
+
+let payments =
+JSON.parse(
+localStorage.getItem("payments")
+) || [];
+
+/* LAST PAYMENT */
+
+if(payments.length > 0){
+
+    const last =
+    payments[payments.length - 1];
+
+    paymentInfo.innerHTML = `
+
+        ${last.number}
+        <br>
+        (An ${last.name})
+        <br><br>
+        ${last.bank}
+
+    `;
+
+}
+
+/* =========================
+   SAVE PNG
+========================= */
+
+document
+.getElementById("saveBill")
+
+.onclick = ()=>{
+
+    html2canvas(
+
+        document.getElementById("billArea")
+
+    ).then(canvas=>{
+
+        const link =
+        document.createElement("a");
+
+        link.download =
+        "sybill.png";
+
+        link.href =
+        canvas.toDataURL();
+
+        link.click();
+
+    });
+
+};
+
+</script>
+
+</body>
+
+</html>

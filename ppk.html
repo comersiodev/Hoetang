@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Rekap Utang
+</title>
+
+<style>
+
+/* =========================
+   BODY
+========================= */
+
+body{
+
+    margin:0;
+    padding:0;
+
+    background:#05070d;
+
+    font-family:Georgia, serif;
+
+    color:white;
+
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+
+    width:90%;
+
+    margin:auto;
+
+    padding-top:18px;
+
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    background:#222;
+
+    border:4px solid #0047c6;
+
+    border-radius:24px;
+
+    padding:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+/* ICON */
+
+.header-icon{
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    overflow:hidden;
+
+    border:3px solid white;
+
+    flex-shrink:0;
+
+}
+
+.header-icon img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+/* TITLE */
+
+.title h1{
+
+    margin:0;
+
+    font-size:22px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+}
+
+.title p{
+
+    margin:0;
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:#008cff;
+
+    font-weight:bold;
+
+}
+
+/* =========================
+   LIST BOX
+========================= */
+
+.list-box{
+
+    margin-top:22px;
+
+    background:#222;
+
+    border:4px solid #0047c6;
+
+    border-radius:24px;
+
+    min-height:170px;
+
+    padding:18px;
+
+}
+
+/* TABLE */
+
+.table-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    margin-bottom:14px;
+
+}
+
+/* ITEM */
+
+.item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    border-bottom:
+    1px solid rgba(255,255,255,0.15);
+
+    font-size:14px;
+
+}
+
+/* =========================
+   BUTTON TAMBAH
+========================= */
+
+.add-btn{
+
+    width:100%;
+
+    margin-top:18px;
+
+    border:none;
+
+    background:#708a9c;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    padding:13px;
+
+    border-radius:18px;
+
+    border:4px solid #0047c6;
+
+    cursor:pointer;
+
+}
+
+/* =========================
+   BUTTON TAGIH
+========================= */
+
+.tagih-btn{
+
+    width:60%;
+
+    margin:14px auto 0;
+
+    display:block;
+
+    border:none;
+
+    background:#1248ad;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    padding:10px;
+
+    border-radius:999px;
+
+    border:3px solid #4ea1ff;
+
+    cursor:pointer;
+
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+
+    margin-top:32px;
+
+    background:#1248ad;
+
+    padding:13px;
+
+    border-radius:20px 20px 0 0;
+
+    text-align:center;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    color:#4fc3ff;
+
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,0.75);
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:999;
+
+}
+
+/* BOX */
+
+.modal-box{
+
+    width:75%;
+
+    background:#222;
+
+    border:5px solid #0047c6;
+
+    border-radius:24px;
+
+    padding:22px;
+
+}
+
+/* TITLE */
+
+.modal-box h2{
+
+    margin-top:0;
+
+    text-align:center;
+
+    font-size:22px;
+
+    color:white;
+
+    text-shadow:
+    2px 2px #0047c6;
+
+}
+
+/* INPUT */
+
+.input-group{
+
+    margin-top:16px;
+
+}
+
+.input-group label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#008cff;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    box-sizing:border-box;
+
+    border:none;
+
+    outline:none;
+
+    padding:13px;
+
+    border-radius:14px;
+
+    font-size:14px;
+
+    background:#ddd;
+
+    color:#222;
+
+}
+
+/* BUTTON MODAL */
+
+.modal-btns{
+
+    margin-top:22px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+}
+
+.modal-btns button{
+
+    width:42%;
+
+    border:none;
+
+    padding:12px;
+
+    border-radius:16px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.cancel{
+
+    background:#c91c1c;
+
+}
+
+.save{
+
+    background:#34af4d;
+
+}
+
+/* =========================
+   CONFIRM BOX
+========================= */
+
+.confirm-box{
+
+    text-align:center;
+
+}
+
+.confirm-box h1{
+
+    font-size:24px;
+
+    margin-top:0;
+
+    margin-bottom:18px;
+
+    text-shadow:
+    2px 2px black;
+
+}
+
+/* PAYMENT BOX */
+
+.payment-box{
+
+    margin-top:16px;
+
+    background:#151515;
+
+    border:3px solid #0047c6;
+
+    border-radius:16px;
+
+    padding:14px;
+
+    text-align:left;
+
+}
+
+.payment-box h3{
+
+    margin:0 0 8px;
+
+    font-size:15px;
+
+    color:#4ea1ff;
+
+}
+
+.payment-box p{
+
+    margin:0;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    color:#ddd;
+
+}
+
+/* BUTTONS */
+
+.confirm-buttons{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.confirm-buttons button{
+
+    flex:1;
+
+    border:none;
+
+    padding:13px;
+
+    border-radius:18px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:white;
+
+    cursor:pointer;
+
+}
+
+.tarahh{
+
+    background:#d01f1f;
+
+}
+
+.tagihh{
+
+    background:#3ab857;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="header-icon">
+
+            <img src="Rekap.png">
+
+        </div>
+
+        <div class="title">
+
+            <h1>
+            REKAP UTANG
+            </h1>
+
+            <p>
+            Bayar utang ege...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- LIST BOX -->
+
+    <div class="list-box">
+
+        <div class="table-head">
+
+            <span>
+            Nama
+            </span>
+
+            <span>
+            Utang
+            </span>
+
+        </div>
+
+        <div id="debtList">
+
+        </div>
+
+    </div>
+
+    <!-- BUTTON TAMBAH -->
+
+    <button
+    class="add-btn"
+    id="openModal">
+
+    + LIST PENGHOETANG
+
+    </button>
+
+    <!-- BUTTON TAGIH -->
+
+    <button
+    class="tagih-btn"
+    id="openTagih">
+
+    TAGIH HOETANG!!!
+
+    </button>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        by Comérsio K
+
+    </div>
+
+</div>
+
+<!-- =========================
+     MODAL TAMBAH
+========================= -->
+
+<div
+class="modal"
+id="modal">
+
+    <div class="modal-box">
+
+        <h2>
+        TAMBAH PENGHOETANG
+        </h2>
+
+        <div class="input-group">
+
+            <label>
+            Nama
+            </label>
+
+            <input
+            type="text"
+            id="nameInput"
+            placeholder="Masukkan nama...">
+
+        </div>
+
+        <div class="input-group">
+
+            <label>
+            Utang
+            </label>
+
+            <input
+            type="number"
+            id="debtInput"
+            placeholder="Masukkan jumlah utang...">
+
+        </div>
+
+        <div class="modal-btns">
+
+            <button
+            class="cancel"
+            id="closeModal">
+
+            Cancel
+
+            </button>
+
+            <button
+            class="save"
+            id="saveData">
+
+            Save
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     MODAL TAGIH
+========================= -->
+
+<div
+class="modal"
+id="tagihModal">
+
+    <div class="modal-box confirm-box">
+
+        <h1>
+        TAGIH BROKK?
+        </h1>
+
+        <div class="payment-box">
+
+            <h3>
+            Payment Method :
+            </h3>
+
+            <p id="paymentInfo">
+
+            Belum ada payment method 🗿
+
+            </p>
+
+        </div>
+
+        <div class="confirm-buttons">
+
+            <button
+            class="tarahh"
+            id="cancelTagih">
+
+            TAR AHH
+
+            </button>
+
+            <button
+            class="tagihh"
+            id="confirmTagih">
+
+            TAGIHH!!
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+/* =========================
+   ELEMENT
+========================= */
+
+const modal =
+document.getElementById("modal");
+
+const openModal =
+document.getElementById("openModal");
+
+const closeModal =
+document.getElementById("closeModal");
+
+const saveData =
+document.getElementById("saveData");
+
+const debtList =
+document.getElementById("debtList");
+
+/* TAGIH */
+
+const tagihModal =
+document.getElementById("tagihModal");
+
+const openTagih =
+document.getElementById("openTagih");
+
+const cancelTagih =
+document.getElementById("cancelTagih");
+
+const confirmTagih =
+document.getElementById("confirmTagih");
+
+const paymentInfo =
+document.getElementById("paymentInfo");
+
+/* =========================
+   LOAD STORAGE
+========================= */
+
+let debts =
+JSON.parse(
+localStorage.getItem("debts")
+) || [];
+
+/* =========================
+   RENDER DEBTS
+========================= */
+
+function renderDebts(){
+
+    debtList.innerHTML = "";
+
+    debts.forEach((data)=>{
+
+        const item =
+        document.createElement("div");
+
+        item.classList.add("item");
+
+        item.innerHTML = `
+
+            <span>${data.name}</span>
+
+            <span>
+            Rp ${Number(data.debt)
+            .toLocaleString("id-ID")}
+            </span>
+
+        `;
+
+        debtList.appendChild(item);
+
+    });
+
+}
+
+renderDebts();
+
+/* =========================
+   OPEN MODAL
+========================= */
+
+openModal.onclick = ()=>{
+
+    modal.style.display = "flex";
+
+};
+
+/* =========================
+   CLOSE MODAL
+========================= */
+
+closeModal.onclick = ()=>{
+
+    modal.style.display = "none";
+
+};
+
+/* =========================
+   SAVE DATA
+========================= */
+
+saveData.onclick = ()=>{
+
+    const name =
+    document.getElementById(
+    "nameInput"
+    ).value;
+
+    const debt =
+    document.getElementById(
+    "debtInput"
+    ).value;
+
+    if(name === "" || debt === ""){
+
+        alert(
+        "Isi dulu jirr 🗿"
+        );
+
+        return;
+
+    }
+
+    debts.push({
+
+        name:name,
+        debt:debt
+
+    });
+
+    localStorage.setItem(
+
+        "debts",
+
+        JSON.stringify(debts)
+
+    );
+
+    renderDebts();
+
+    document.getElementById(
+    "nameInput"
+    ).value = "";
+
+    document.getElementById(
+    "debtInput"
+    ).value = "";
+
+    modal.style.display = "none";
+
+};
+
+/* =========================
+   OPEN TAGIH
+========================= */
+
+openTagih.onclick = ()=>{
+
+    tagihModal.style.display = "flex";
+
+    let payments =
+    JSON.parse(
+    localStorage.getItem("payments")
+    ) || [];
+
+    if(payments.length > 0){
+
+        const last =
+        payments[payments.length - 1];
+
+        paymentInfo.innerHTML = `
+
+        ${last.bank}
+        <br><br>
+
+        ${last.number}
+        <br><br>
+
+        A/N ${last.name}
+
+        `;
+
+    }else{
+
+        paymentInfo.innerHTML =
+        "Belum ada payment method 🗿";
+
+    }
+
+};
+
+/* =========================
+   CLOSE TAGIH
+========================= */
+
+cancelTagih.onclick = ()=>{
+
+    tagihModal.style.display = "none";
+
+};
+
+/* =========================
+   CONFIRM TAGIH
+========================= */
+
+confirmTagih.onclick = ()=>{
+
+    let payments =
+    JSON.parse(
+    localStorage.getItem("payments")
+    ) || [];
+
+    if(payments.length === 0){
+
+        alert(
+        "Tambah payment method dulu coo 🗿"
+        );
+
+        return;
+
+    }
+
+    window.location.href =
+    "payment.html";
+
+};
+
+</script>
+
+</body>
+</html>
